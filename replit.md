@@ -4,6 +4,20 @@
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
 
+## ASCENDX Artifact (`artifacts/ascendx`)
+
+Premium fitness consulting platform. Tech stack:
+- **Framework**: Next.js 15 (App Router, `output: 'export'` static)
+- **Styling**: Tailwind CSS v4 + custom liquid glass `.liquid-glass` class
+- **Animations**: Framer Motion (`useInView` scroll reveals) + GSAP (hero entrance, ScrollTrigger)
+- **Smooth scroll**: Lenis 1.x wired to GSAP ticker
+- **Fonts**: `next/font/google` — Instrument Serif (display) + Inter (body) as CSS variables
+- **Auth**: Mock `AuthContext` (any email logs in as demo user "Marcus")
+- **Pages**: Home, Programs, Transformation, About, Contact, Login, Dashboard
+- **Structure**: `src/app/` (Next.js App Router pages) + `src/components/` + `src/context/`
+- All interactive pages use `'use client'` directive
+- Path alias: `@/*` → `./src/*`
+
 ## Stack
 
 - **Monorepo tool**: pnpm workspaces

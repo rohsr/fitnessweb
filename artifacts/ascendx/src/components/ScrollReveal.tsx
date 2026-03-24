@@ -1,4 +1,7 @@
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+'use client';
+
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -15,26 +18,39 @@ export default function ScrollReveal({
   delay = 0,
   threshold = 0.15,
 }: ScrollRevealProps) {
-  const { ref, isVisible } = useScrollReveal<HTMLDivElement>(threshold);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, {
+    once: true,
+    margin: `-${Math.round(threshold * 100)}% 0px`,
+  });
 
-  const directionMap = {
-    up: 'translate-y-8',
-    left: '-translate-x-8',
-    right: 'translate-x-8',
-    none: '',
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: direction === 'up' ? 32 : 0,
+      x: direction === 'left' ? -32 : direction === 'right' ? 32 : 0,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+    },
   };
 
   return (
-    <div
+    <motion.div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${
-        isVisible
-          ? 'opacity-100 translate-x-0 translate-y-0'
-          : `opacity-0 ${directionMap[direction]}`
-      } ${className}`}
-      style={{ transitionDelay: isVisible ? `${delay}ms` : '0ms' }}
+      variants={variants}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      transition={{
+        duration: 0.75,
+        ease: [0.25, 0.1, 0.25, 1],
+        delay: delay / 1000,
+      }}
+      className={className}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
