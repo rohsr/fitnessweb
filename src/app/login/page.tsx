@@ -34,9 +34,9 @@ export default function LoginPage() {
     <main className="min-h-screen w-full flex relative overflow-hidden bg-background">
       {/* Background Image Wrapper */}
       <div className="absolute inset-0 w-full h-full z-0">
-        <img 
-          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop" 
-          alt="Gym Background" 
+        <img
+          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop"
+          alt="Gym Background"
           className="object-cover w-full h-full opacity-60 mix-blend-luminosity"
         />
         {/* Subtle overlay to ensure the form stands out */}
@@ -44,21 +44,14 @@ export default function LoginPage() {
       </div>
 
       {/* Main Content Layout */}
-      <div className="relative z-10 w-full flex">
-        {/* Left Side: Login Form */}
-        <div className="w-full lg:w-[55%] flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-24 py-12">
-          
-          {/* Logo Heading */}
-          <div className="absolute top-8 left-8 sm:left-12 lg:left-24">
-            <Link href="/" className="flex items-center gap-3 text-2xl tracking-tight text-foreground select-none no-underline" style={{ fontFamily: 'var(--font-display)' }}>
-              ASCENDX<sup className="text-xs">®</sup>
-            </Link>
-          </div>
+      <div className="relative z-10 w-full flex items-center justify-center min-h-screen">
+        {/* Centered Login Form */}
+        <div className="w-full flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-24 py-12">
 
           <motion.div
-            className="w-full max-w-md mx-auto lg:mx-0 liquid-glass rounded-3xl p-8 sm:p-10 border border-border/40 shadow-2xl"
-            initial={{ opacity: 0, x: -28 }}
-            animate={{ opacity: 1, x: 0 }}
+            className="w-full max-w-md mx-auto liquid-glass rounded-3xl p-8 sm:p-10 border border-border/40 shadow-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <div className="mb-8 text-center sm:text-left">
@@ -75,14 +68,14 @@ export default function LoginPage() {
                 <label className="block text-xs font-semibold tracking-wide text-muted-foreground mb-2" style={{ fontFamily: 'var(--font-body)' }}>
                   Email
                 </label>
-                <input 
-                  type="email" 
-                  required 
-                  value={email} 
-                  onChange={(e) => setEmail(e.target.value)} 
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="your@email.com"
-                  className="w-full bg-background/40 border border-border/50 rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 focus:bg-background/60 transition-colors" 
-                  style={{ fontFamily: 'var(--font-body)' }} 
+                  className="w-full bg-background/40 border border-border/50 rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 focus:bg-background/60 transition-colors"
+                  style={{ fontFamily: 'var(--font-body)' }}
                 />
               </div>
 
@@ -90,15 +83,15 @@ export default function LoginPage() {
                 <label className="block text-xs font-semibold tracking-wide text-muted-foreground mb-2" style={{ fontFamily: 'var(--font-body)' }}>
                   Password
                 </label>
-                <input 
-                  type="password" 
-                  required 
-                  value={password} 
-                  onChange={(e) => setPassword(e.target.value)} 
-                  placeholder="••••••••" 
+                <input
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
                   autoComplete="current-password"
-                  className="w-full bg-background/40 border border-border/50 rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 focus:bg-background/60 transition-colors" 
-                  style={{ fontFamily: 'var(--font-body)' }} 
+                  className="w-full bg-background/40 border border-border/50 rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-foreground/30 focus:bg-background/60 transition-colors"
+                  style={{ fontFamily: 'var(--font-body)' }}
                 />
               </div>
 
@@ -109,7 +102,7 @@ export default function LoginPage() {
               </div>
 
               {error && <p className="text-red-400 text-xs text-center" style={{ fontFamily: 'var(--font-body)' }}>{error}</p>}
-              
+
               <motion.button
                 type="submit"
                 disabled={loading}
@@ -120,7 +113,7 @@ export default function LoginPage() {
               >
                 {loading ? 'Signing in...' : 'Sign In'}
               </motion.button>
-              
+
               <div className="relative flex items-center py-4">
                 <div className="flex-grow border-t border-border/40"></div>
                 <span className="flex-shrink-0 mx-4 text-xs text-muted-foreground" style={{ fontFamily: 'var(--font-body)' }}>Or continue with</span>
@@ -149,8 +142,7 @@ export default function LoginPage() {
           </motion.div>
         </div>
 
-        {/* Right Side: Empty to showcase the background image */}
-        <div className="hidden lg:block w-[45%]"></div>
+
       </div>
     </main>
   );

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Nav from '@/components/Nav';
+
 import ScrollReveal from '@/components/ScrollReveal';
 
 const goals = [
@@ -32,7 +32,7 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Nav />
+
 
       <section className="px-6 pt-24 pb-20 max-w-7xl mx-auto">
         <ScrollReveal direction="up">

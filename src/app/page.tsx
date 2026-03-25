@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
-import Nav from '@/components/Nav';
+
 
 export default function HeroPage() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
@@ -36,9 +36,9 @@ export default function HeroPage() {
         <div className="absolute inset-0 bg-black/60 pointer-events-none"></div>
       </div>
 
-      <Nav transparent />
 
-      <section className="relative z-10 flex flex-col items-center text-center px-6 pt-32 pb-40">
+
+      <section className="relative z-10 flex flex-col items-center justify-center text-center px-6 min-h-screen">
         <h1
           ref={headlineRef}
           className="text-5xl sm:text-7xl md:text-8xl font-normal max-w-7xl"

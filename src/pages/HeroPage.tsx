@@ -1,4 +1,4 @@
-import Nav from '@/components/Nav';
+
 import { Link } from 'wouter';
 
 export default function HeroPage() {
@@ -18,7 +18,7 @@ export default function HeroPage() {
         <div className="absolute inset-0 bg-black/60 pointer-events-none"></div>
       </div>
 
-      <Nav transparent />
+
 
       {/* Hero Section */}
       <section className="relative z-10 flex flex-col items-center text-center px-6 pt-32 pb-40 py-[90px]">

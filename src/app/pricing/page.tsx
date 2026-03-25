@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Check } from 'lucide-react';
-import Nav from '@/components/Nav';
+
 import ScrollReveal from '@/components/ScrollReveal';
 
 type Plan = {
@@ -93,7 +93,7 @@ export default function PricingPage() {
 
       {/* Main Content Layer */}
       <div className="relative z-10 flex flex-col">
-        <Nav />
+
         <section className="px-6 pt-24 pb-16 max-w-7xl mx-auto flex flex-col items-center text-center">
           <ScrollReveal direction="up">
             <h1

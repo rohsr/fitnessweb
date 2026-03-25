@@ -1,4 +1,4 @@
-import Nav from '@/components/Nav';
+
 import ScrollReveal from '@/components/ScrollReveal';
 import { Link } from 'wouter';
 
@@ -35,7 +35,7 @@ const programs = [
 export default function ProgramsPage() {
   return (
     <main className="min-h-screen bg-background">
-      <Nav />
+
 
       {/* Hero */}
       <section className="px-6 pt-24 pb-20 max-w-7xl mx-auto">

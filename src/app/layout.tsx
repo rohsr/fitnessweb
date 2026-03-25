@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Instrument_Serif, Inter } from 'next/font/google';
 import './globals.css';
 import { Providers } from '@/components/Providers';
+import Nav from '@/components/Nav';
 
 const instrumentSerif = Instrument_Serif({
   weight: '400',
@@ -31,7 +32,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${instrumentSerif.variable} ${inter.variable}`}>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Nav />
+          {children}
+        </Providers>
       </body>
     </html>
   );

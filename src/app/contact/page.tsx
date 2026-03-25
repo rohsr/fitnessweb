@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Nav from '@/components/Nav';
+
 import ScrollReveal from '@/components/ScrollReveal';
 
 const goals = ['Lose body fat', 'Build muscle', 'Improve athletic performance', 'Body recomposition', 'General health & fitness'];
@@ -21,7 +21,7 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Nav />
+
       <section className="px-6 pt-24 pb-20 max-w-7xl mx-auto">
         <ScrollReveal direction="up">
           <span className="text-xs tracking-[0.25em] uppercase text-muted-foreground" style={{ fontFamily: 'var(--font-body)' }}>Get Started</span>
