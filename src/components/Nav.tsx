@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
+import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -15,6 +16,7 @@ export default function Nav() {
   const pathname = usePathname();
   const { user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,26 +60,74 @@ export default function Nav() {
           })}
         </ul>
 
-        {user ? (
-          <Link href="/dashboard">
-            <button
-              className="liquid-glass rounded-full px-6 py-2.5 text-sm text-foreground transition-transform duration-200 hover:scale-[1.03] cursor-pointer"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Dashboard
-            </button>
-          </Link>
-        ) : (
-          <Link href="/login">
-            <button
-              className="liquid-glass rounded-full px-6 py-2.5 text-sm text-foreground transition-transform duration-200 hover:scale-[1.03] cursor-pointer"
-              style={{ fontFamily: 'var(--font-body)' }}
-            >
-              Login
-            </button>
-          </Link>
-        )}
+        <div className="hidden md:block">
+          {user ? (
+            <Link href="/dashboard">
+              <button
+                className="liquid-glass rounded-full px-6 py-2.5 text-sm text-foreground transition-transform duration-200 hover:scale-[1.03] cursor-pointer"
+                style={{ fontFamily: 'var(--font-body)' }}
+              >
+                Dashboard
+              </button>
+            </Link>
+          ) : (
+            <Link href="/login">
+              <button
+                className="liquid-glass rounded-full px-6 py-2.5 text-sm text-foreground transition-transform duration-200 hover:scale-[1.03] cursor-pointer"
+                style={{ fontFamily: 'var(--font-body)' }}
+              >
+                Login
+              </button>
+            </Link>
+          )}
+        </div>
+
+        <button
+          className="md:hidden text-foreground p-2 cursor-pointer transition-transform hover:scale-105"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <X size={26} /> : <Menu size={26} />}
+        </button>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      {menuOpen && (
+        <div className="md:hidden absolute top-[100%] left-0 w-full bg-background/95 backdrop-blur-xl border-b border-border/20 flex flex-col items-center justify-start pt-8 pb-12 gap-8 z-40 shadow-2xl">
+          {navLinks.map(({ label, path }) => (
+            <Link
+              key={label}
+              href={path}
+              onClick={() => setMenuOpen(false)}
+              className="text-2xl tracking-tight font-medium text-foreground transition-colors hover:text-foreground/70"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              {label}
+            </Link>
+          ))}
+          <div className="mt-2 w-full px-10">
+            {user ? (
+              <Link href="/dashboard" onClick={() => setMenuOpen(false)}>
+                <button
+                  className="w-full liquid-glass rounded-full px-6 py-4 text-base text-foreground transition-transform duration-200 hover:scale-[1.03] cursor-pointer"
+                  style={{ fontFamily: 'var(--font-body)' }}
+                >
+                  Dashboard
+                </button>
+              </Link>
+            ) : (
+              <Link href="/login" onClick={() => setMenuOpen(false)}>
+                <button
+                  className="w-full liquid-glass rounded-full px-6 py-4 text-base text-foreground transition-transform duration-200 hover:scale-[1.03] cursor-pointer"
+                  style={{ fontFamily: 'var(--font-body)' }}
+                >
+                  Login
+                </button>
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   );
 }
