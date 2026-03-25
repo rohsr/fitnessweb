@@ -1,2 +1,0 @@
-src/app/pricing/page.tsx(94,16): error TS17008: JSX element 'div' has no corresponding closing tag.
-src/app/pricing/page_test.tsx(94,16): error TS17008: JSX element 'div' has no corresponding closing tag.
