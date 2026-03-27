@@ -101,7 +101,13 @@ export default function LoginPage() {
                 </span>
               </div>
 
+              <div className="rounded-xl bg-foreground/5 border border-foreground/10 px-4 py-3 text-xs text-muted-foreground" style={{ fontFamily: 'var(--font-body)' }}>
+                <span className="font-semibold text-foreground/70">Demo login: </span>
+                demo@elevatefitness.com{' '}/{' '}Elevate@123
+              </div>
+
               {error && <p className="text-red-400 text-xs text-center" style={{ fontFamily: 'var(--font-body)' }}>{error}</p>}
+
 
               <motion.button
                 type="submit"

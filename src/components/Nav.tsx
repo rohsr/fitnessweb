@@ -26,6 +26,9 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Hide navbar entirely on dashboard
+  if (pathname.startsWith('/dashboard')) return null;
+
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${

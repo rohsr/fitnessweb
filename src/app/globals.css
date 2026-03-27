@@ -159,6 +159,20 @@
   overflow: hidden;
 }
 
+/* Utility: hide scrollbar while keeping scroll functionality */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safe area top padding for mobile notch */
+.pt-safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
 .liquid-glass::before {
   content: '';
   position: absolute;
