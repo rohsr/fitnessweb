@@ -193,3 +193,74 @@
   mask-composite: exclude;
   pointer-events: none;
 }
+
+/* ─── Dashboard: Dark Mode (default) ─────────────────────────────────── */
+[data-dash-theme="dark"] {
+  --background: 0 0% 4%;
+  --foreground: 0 0% 100%;
+  --muted-foreground: 0 0% 60%;
+  --border: 0 0% 14%;
+}
+
+/* ─── Dashboard: Light Mode ───────────────────────────────────────────── */
+[data-dash-theme="light"] {
+  --background: 0 0% 97%;
+  --foreground: 0 0% 6%;
+  --muted-foreground: 0 0% 40%;
+  --border: 0 0% 85%;
+  color-scheme: light;
+}
+
+/* Flip hardcoded white-based text → dark */
+[data-dash-theme="light"] .text-white,
+[data-dash-theme="light"] [class*="text-white/"] {
+  color: rgba(15, 15, 15, 0.9) !important;
+}
+
+/* Flip hardcoded white translucent backgrounds → dark translucent */
+[data-dash-theme="light"] [class*="bg-white/"] {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Flip hardcoded white translucent borders → dark */
+[data-dash-theme="light"] [class*="border-white/"] {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Sidebar + app header in light mode */
+[data-dash-theme="light"] .dash-sidebar {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+  border-right-color: rgba(0, 0, 0, 0.1) !important;
+}
+[data-dash-theme="light"] .dash-header {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Mobile bottom nav in light mode */
+[data-dash-theme="light"] .dash-bottom-nav {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-top-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Badge / accent colors that use blue */
+[data-dash-theme="light"] .text-blue-400 { color: #2563eb !important; }
+[data-dash-theme="light"] .text-blue-300 { color: #2563eb !important; }
+[data-dash-theme="light"] .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08) !important; }
+[data-dash-theme="light"] .bg-blue-500\/20 { background-color: rgba(37,99,235,0.1) !important; }
+[data-dash-theme="light"] .border-blue-500\/30 { border-color: rgba(37,99,235,0.25) !important; }
+[data-dash-theme="light"] .border-blue-500\/50 { border-color: rgba(37,99,235,0.3) !important; }
+[data-dash-theme="light"] .bg-blue-500 { background-color: #2563eb !important; }
+
+/* Green accents */
+[data-dash-theme="light"] .text-green-400 { color: #16a34a !important; }
+[data-dash-theme="light"] .bg-green-500\/10 { background-color: rgba(22,163,74,0.08) !important; }
+[data-dash-theme="light"] .border-green-500\/20 { border-color: rgba(22,163,74,0.2) !important; }
+[data-dash-theme="light"] .bg-green-500\/80,
+[data-dash-theme="light"] .bg-green-500 { background-color: #16a34a !important; border-color: #16a34a !important; }
+
+/* Red logout */
+[data-dash-theme="light"] .text-red-400 { color: #dc2626 !important; }
+[data-dash-theme="light"] .bg-red-500\/10 { background-color: rgba(220,38,38,0.07) !important; }
+[data-dash-theme="light"] .hover\:bg-red-500\/10:hover { background-color: rgba(220,38,38,0.1) !important; }
+[data-dash-theme="light"] .border-red-500\/20 { border-color: rgba(220,38,38,0.2) !important; }

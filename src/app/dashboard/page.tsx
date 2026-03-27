@@ -44,8 +44,13 @@ const Icon = {
       <path d="M12 2c0 0-5 5-5 11a5 5 0 0010 0c0-2-1-4-2-5 0 2-1 4-3 4-2 0-3-2-2-4 0 0 2-1 2-6z" />
     </svg>
   ),
+  Sun: () => (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+      <circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  ),
   Moon: () => (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
       <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" />
     </svg>
   ),
@@ -694,6 +699,8 @@ export default function DashboardPage() {
   const { user, logout } = useAuth();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<Tab>('home');
+  const [dashTheme, setDashTheme] = useState<'dark' | 'light'>('dark');
+  const toggleTheme = () => setDashTheme(t => t === 'dark' ? 'light' : 'dark');
 
   useEffect(() => {
     if (!user) router.push('/login');
@@ -718,13 +725,22 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-background flex" data-dash-theme={dashTheme}>
       {/* ── Desktop Sidebar ── */}
-      <aside className="hidden md:flex flex-col w-60 shrink-0 border-r border-white/8 bg-white/[0.02] backdrop-blur-sm">
+      <aside className="hidden md:flex flex-col w-60 shrink-0 border-r bg-white/[0.02] backdrop-blur-sm dash-sidebar">
         <div className="px-6 pt-7 pb-5 border-b border-white/8">
-          <a href="/" className="text-xl tracking-tight text-white select-none no-underline" style={{ fontFamily: 'var(--font-display)' }}>
-            ASCENDX<sup className="text-[10px]">®</sup>
-          </a>
+          <div className="flex items-center justify-between mb-1">
+            <a href="/" className="text-xl tracking-tight text-white select-none no-underline" style={{ fontFamily: 'var(--font-display)' }}>
+              ASCENDX<sup className="text-[10px]">®</sup>
+            </a>
+            <button
+              onClick={toggleTheme}
+              title={dashTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+              className="w-7 h-7 rounded-lg flex items-center justify-center transition-colors cursor-pointer text-white/50 hover:text-white/80 hover:bg-white/8"
+            >
+              {dashTheme === 'dark' ? <Icon.Sun /> : <Icon.Moon />}
+            </button>
+          </div>
           <div className="flex items-center gap-2.5 mt-4">
             <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500/30 to-purple-500/30 border border-white/10 flex items-center justify-center shrink-0">
               <span className="text-sm font-normal text-white" style={{ fontFamily: 'var(--font-display)' }}>{user.name.charAt(0)}</span>
@@ -768,12 +784,19 @@ export default function DashboardPage() {
       {/* ── Main Content ── */}
       <div className="flex-1 flex flex-col min-h-screen min-w-0">
         {/* Mobile Header */}
-        <header className="md:hidden flex items-center justify-between px-5 pt-safe-top pt-4 pb-3 border-b border-white/8 bg-white/[0.02] backdrop-blur-sm sticky top-0 z-30">
+        <header className="md:hidden flex items-center justify-between px-5 pt-safe-top pt-4 pb-3 border-b border-white/8 bg-white/[0.02] backdrop-blur-sm sticky top-0 z-30 dash-header">
           <div>
             <div className="text-[10px] tracking-[0.2em] uppercase text-white/40 leading-none mb-0.5" style={{ fontFamily: 'var(--font-body)' }}>ASCENDX®</div>
             <div className="text-base font-normal text-white leading-none" style={{ fontFamily: 'var(--font-display)' }}>{tabTitles[activeTab]}</div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              title={dashTheme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+              className="w-8 h-8 rounded-xl flex items-center justify-center transition-colors cursor-pointer text-white/50 hover:text-white/80 border border-white/10 bg-white/5"
+            >
+              {dashTheme === 'dark' ? <Icon.Sun /> : <Icon.Moon />}
+            </button>
             <button className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
               <Icon.Bell />
             </button>
@@ -808,7 +831,7 @@ export default function DashboardPage() {
       </div>
 
       {/* ── Mobile Bottom Nav ── */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-white/10 bg-background/90 backdrop-blur-xl">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-white/10 bg-background/90 backdrop-blur-xl dash-bottom-nav">
         <div className="flex items-stretch" style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}>
           {tabs.map(({ id, label, icon: TabIcon }) => (
             <button
