@@ -17,6 +17,7 @@ type Plan = {
   note?: string;
   ctaText: string;
   popular?: boolean;
+  checkoutPlan: string;
 };
 
 const plans: Plan[] = [
@@ -33,8 +34,8 @@ const plans: Plan[] = [
       'Access to recorded content (videos/tutorials)',
       'Email support (48–72 hr response)',
     ],
-
     ctaText: 'Get Started',
+    checkoutPlan: 'basic',
   },
   {
     title: 'Intermediate Tier',
@@ -51,6 +52,7 @@ const plans: Plan[] = [
       'Limited chat support (24–48 hr response)',
     ],
     ctaText: 'Get Started',
+    checkoutPlan: 'intermediate',
   },
   {
     title: 'Premium Tier',
@@ -69,6 +71,7 @@ const plans: Plan[] = [
     ],
     popular: true,
     ctaText: 'Get Started',
+    checkoutPlan: 'premium',
   },
 ];
 
@@ -156,7 +159,7 @@ export default function PricingPage() {
 
 
                     <div className="mt-8">
-                      <Link href="/contact" className="block w-full">
+                      <Link href={`/checkout?plan=${plan.checkoutPlan}`} className="block w-full">
                         <button
                           className={`w-full py-3.5 rounded-2xl text-[15px] font-semibold transition-all duration-300 ${plan.popular
                             ? 'bg-[#00A3FF] text-white hover:bg-[#00A3FF]/90 shadow-lg shadow-sky-500/20'

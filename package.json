@@ -68,5 +68,9 @@
     "typescript": "6.0.2",
     "vaul": "^1.1.2",
     "zod": "^3.25.76"
+  },
+  "dependencies": {
+    "@stripe/react-stripe-js": "^6.0.0",
+    "@stripe/stripe-js": "^9.0.0"
   }
 }
